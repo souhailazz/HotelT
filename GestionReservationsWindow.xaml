@@ -1,0 +1,127 @@
+﻿<Window x:Class="Hotel.GestionReservationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestion des Réservations" Height="600" Width="800" Background="#F0F0F0">
+    <Window.Resources>
+        <!-- Button Style for consistency -->
+        <Style x:Key="MainButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10"/>
+            <!-- Updated button color to blue -->
+        </Style>
+
+        <!-- TextBox Style for consistency -->
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="black"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <!-- Updated background to white -->
+            <Setter Property="BorderBrush" Value="#444"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <!-- ComboBox Style for consistency -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Foreground" Value="black"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <!-- Updated background to white -->
+            <Setter Property="BorderBrush" Value="#444"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <!-- DataGrid Style for consistency -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Foreground" Value="black"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <!-- Updated DataGrid background to white -->
+            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="BorderBrush" Value="#444"/>
+            <Setter Property="RowBackground" Value="#F9F9F9"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Gestion des Réservations" 
+                   FontSize="20" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top" 
+                   Margin="0,20,0,10" Foreground="black"/>
+
+        <DataGrid x:Name="ReservationsDataGrid" 
+                  Grid.Row="1"
+                  Margin="20,10"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True" 
+                  HeadersVisibility="Column" 
+                  CanUserAddRows="False" 
+                  CanUserDeleteRows="False"
+                  SelectionMode="Single"
+                  SelectionChanged="ReservationsDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdReservation}" />
+                <DataGridTextColumn Header="Chambre ID" Binding="{Binding ChambreId}" />
+                <DataGridTextColumn Header="Client ID" Binding="{Binding IdClient}" />
+                <DataGridTextColumn Header="Date de Départ" Binding="{Binding DateDepart, StringFormat='dd/MM/yyyy'}" />
+                <DataGridTextColumn Header="Date de Sortie" Binding="{Binding DateSortie, StringFormat='dd/MM/yyyy'}" />
+                <DataGridTextColumn Header="Nombre de Personnes" Binding="{Binding NbrPersonne}" />
+                <DataGridTextColumn Header="État de la Réservation" Binding="{Binding ReservationEtatId}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="10">
+                <TextBlock Text="ID Réservation:" Foreground="black"/>
+                <TextBox x:Name="txtIdReservation" IsEnabled="False"/>
+
+                <TextBlock Text="ID Client:" Margin="0,10,0,0" Foreground="black"/>
+                <TextBox x:Name="txtIdClient"/>
+
+                <TextBlock Text="Date de Départ:" Margin="0,10,0,0" Foreground="black"/>
+                <DatePicker x:Name="dpDateDepart"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="10">
+                <TextBlock Text="Date de Sortie:" Foreground="black"/>
+                <DatePicker x:Name="dpDateSortie"/>
+
+                <TextBlock Text="Nombre de Personnes:" Margin="0,10,0,0" Foreground="black"/>
+                <TextBox x:Name="txtNbrPersonne"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Margin="10" VerticalAlignment="Bottom">
+                <TextBlock Text="État de Réservation:" Foreground="black"/>
+                <ComboBox x:Name="cmbReservationEtat"/>
+
+                <Button Content="Mettre à Jour" 
+                        x:Name="btnUpdateReservation" 
+                        Style="{StaticResource MainButtonStyle}" 
+                        Click="btnUpdateReservation_Click" 
+                        Margin="0,10" IsEnabled="False"/>
+
+                <Button Content="Supprimer" 
+                        x:Name="btnDeleteReservation" 
+                        Style="{StaticResource MainButtonStyle}" 
+                        Background="LightCoral" IsEnabled="False"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

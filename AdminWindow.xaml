@@ -1,0 +1,81 @@
+﻿<Window x:Class="Hotel.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Dashboard Administrateur" WindowState="Maximized" WindowStyle="None" Background="#FFFFFF" Height="1052" Width="1462">
+    <Window.Resources>
+        <!-- Button Style for consistency -->
+        <Style x:Key="MainButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Height" Value="90"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="#F9F9F9"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Height="1064" Margin="0,0,10,-12">
+        <!-- Header Section -->
+        <DockPanel Height="70" Background="#0078D7" VerticalAlignment="Top">
+            <TextBlock Text="Dashboard Administrateur" Foreground="White" FontSize="24"
+                       VerticalAlignment="Center" Margin="20,0,0,0" FontWeight="Bold"/>
+            <Button Content="Déconnexion" Width="130" Height="40" 
+                    Margin="0,15,20,0" HorizontalAlignment="Right" VerticalAlignment="Center" DockPanel.Dock="Right"
+                    Background="#FF5555" Foreground="White" BorderThickness="0" Click="Logout_Click" />
+        </DockPanel>
+
+        <!-- Main Content -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="806" Width="1452">
+            <Button Style="{StaticResource MainButtonStyle}" Click="GestionClients_Click" Height="217" Width="234">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/icons/client.png" Height="50" Width="50" Margin="0,0,0,10"/>
+                    <TextBlock Text="Clients" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MainButtonStyle}" Click="GestionEmployes_Click" Height="203" Width="205">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/icons/employee.png" Height="50" Width="50" Margin="0,0,0,10"/>
+                    <TextBlock Text="Employés" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MainButtonStyle}" Click="GestionTypesChambres_Click" Height="196" Width="238">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/icons/hotel.png" Height="50" Width="50" Margin="0,0,0,10"/>
+                    <TextBlock Text="Types de Chambres" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MainButtonStyle}" Click="GestionReservations_Click" Height="200" Width="224">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/icons/booking.png" Height="50" Width="50" Margin="0,0,0,10"/>
+                    <TextBlock Text="Réservations" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MainButtonStyle}" Click="GestionPaiements_Click" Height="193" Width="214">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/icons/payment-method.png" Height="50" Width="50" Margin="0,0,0,10"/>
+                    <TextBlock Text="Paiements" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource MainButtonStyle}" Click="ExportImport_Click" Height="193" Width="202">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/icons/data-collection.png" Height="50" Width="50" Margin="0,0,0,10"/>
+                    <TextBlock Text="Export/Import" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

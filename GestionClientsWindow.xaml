@@ -1,0 +1,134 @@
+﻿<Window x:Class="Hotel.GestionClientsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestion des Clients" Height="639" Width="616" Background="#FFFFFF">
+
+    <!-- Styles -->
+    <Window.Resources>
+        <!-- Button Style -->
+        <Style x:Key="DarkButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="#33334D"/>
+        </Style>
+
+        <!-- TextBox and PasswordBox Style -->
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="#F9F9F9"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="#F9F9F9"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <!-- DataGrid Style -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="RowBackground" Value="#F9F9F9"/>
+        </Style>
+
+        <!-- Label Style -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <!-- Red TextBox Style -->
+        <Style x:Key="RedTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="#FF5555"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+    </Window.Resources>
+
+    <!-- UI Layout -->
+    <Grid>
+        <!-- Title -->
+        <TextBlock Text="Gestion des Clients" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
+
+        <!-- Clients DataGrid -->
+        <DataGrid x:Name="ClientsDataGrid" Margin="38,60,20,311" AutoGenerateColumns="False"
+          IsReadOnly="True" HeadersVisibility="Column" CanUserAddRows="False" 
+          SelectionChanged="ClientsDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" Width="*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" Width="*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Email" Binding="{Binding Mail}" Width="*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <!-- Labels -->
+        <TextBlock Text="Nom" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,363,0,0"/>
+        <TextBlock Text="Prénom" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="316,363,0,0"/>
+        <TextBlock Text="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,403,0,0"/>
+        <TextBlock Text="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,443,0,0"/>
+
+        <!-- TextBoxes -->
+        <TextBox x:Name="NomTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,363,0,0" Height="30" Width="120"/>
+        <TextBox x:Name="PrenomTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="396,363,0,0" Height="30" Width="120"/>
+        <TextBox x:Name="MailTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,403,0,0" Height="30" Width="340"/>
+        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,443,0,0" Height="30" Width="340"/>
+
+        <!-- Red TextBox Input -->
+        <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,323,0,0" Height="30" Width="340" 
+                  TextChanged="SearchTextBox_TextChanged" />
+
+        <!-- Buttons -->
+        <Button Content="Add Client" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="176,483,0,0"
+                Style="{StaticResource DarkButtonStyle}" Background="#0078D7" Click="AddClientButton_Click"/>
+        <Button Content="Update Client" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="296,483,0,0"
+                Style="{StaticResource DarkButtonStyle}" Background="#0078D7" Click="UpdateClientButton_Click"/>
+        <Button Content="Delete Client" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="416,483,0,0"
+                Style="{StaticResource DarkButtonStyle}" Background="#FF5555" Click="DeleteClientButton_Click"/>
+    </Grid>
+
+</Window>

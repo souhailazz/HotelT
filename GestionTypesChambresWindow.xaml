@@ -1,0 +1,63 @@
+﻿<Window x:Class="Hotel.GestionTypesChambresWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestion des Types de Chambres" Height="500" Width="600" Background="#F0F0F0">
+    <Window.Resources>
+        <!-- Button Style for consistency -->
+        <Style x:Key="MainButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="#007BFF"/>
+            <!-- Updated button color to blue -->
+        </Style>
+
+        <!-- TextBox Style for consistency -->
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="black"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <!-- Updated background to white -->
+            <Setter Property="BorderBrush" Value="#444"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <!-- DataGrid Style for consistency -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Foreground" Value="black"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <!-- Updated DataGrid background to white -->
+            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="BorderBrush" Value="#444"/>
+            <Setter Property="RowBackground" Value="#F9F9F9"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <TextBlock Text="Gestion des Types de Chambres" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Foreground="black"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0">
+            <TextBox x:Name="TypeTextBox" Width="150" Margin="5,0"/>
+            <TextBox x:Name="PrixTextBox" Width="100" Margin="5,0"/>
+            <Button Content="Ajouter" Click="AddRoomType_Click" Width="80" Margin="5,0" Style="{StaticResource MainButtonStyle}"/>
+            <Button Content="Modifier" Click="UpdateRoomType_Click" Width="80" Margin="5,0" Style="{StaticResource MainButtonStyle}"/>
+            <Button Content="Supprimer" Click="DeleteRoomType_Click" Width="80" Margin="5,0" Style="{StaticResource MainButtonStyle}" Background="LightCoral"/>
+        </StackPanel>
+
+        <DataGrid x:Name="RoomDataGrid" Margin="10,100,10,10" AutoGenerateColumns="False"
+                  IsReadOnly="False" HeadersVisibility="Column" CanUserAddRows="False"
+                  SelectionChanged="RoomDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Type de Chambre" Binding="{Binding Type}" />
+                <DataGridTextColumn Header="Prix" Binding="{Binding Prix}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
